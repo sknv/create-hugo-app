@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+</head>
+
+<body>
+  {{ block "content" . }}{{ end }}
+</body>
+
+</html>
