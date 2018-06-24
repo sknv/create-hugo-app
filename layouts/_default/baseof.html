@@ -3,11 +3,28 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}</title>
+  <meta name="description" content="{{if .Description }}{{.Description}}{{else}}{{.Site.Params.description}}{{end}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/icon.png">
+
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
+  {{ "<!--[if lt IE 11]>" | safeHTML }}
+    <p class="browserupgrade">
+      You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  {{ "<![endif]-->" | safeHTML }}
+
   {{ block "content" . }}{{ end }}
+
+  <script src="/js/main.js"></script>
 </body>
 
 </html>
