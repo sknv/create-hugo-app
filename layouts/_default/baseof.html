@@ -5,14 +5,15 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}</title>
-  <meta name="description" content="{{if .Description }}{{.Description}}{{else}}{{.Site.Params.description}}{{end}}">
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/icon.png">
 
-  <link rel="stylesheet" href="/css/main.css">
+  {{ $webpack := .Site.Data.webpack_assets.main }}
+  <link rel="stylesheet" href="/{{ $webpack.css }}">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 
   {{ block "content" . }}{{ end }}
 
-  <script src="/js/main.js"></script>
+  <script src="/{{ $webpack.js }}"></script>
 </body>
 
 </html>
