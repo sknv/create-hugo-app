@@ -19,7 +19,8 @@ export default function config(env, argv) {
 
   const result = {
     entry: {
-      main: path.join(__dirname, 'src', 'index.js')
+      main: path.join(__dirname, 'src', 'index.js'),
+      about: path.join(__dirname, 'src', 'about.js')
     },
 
     output: {

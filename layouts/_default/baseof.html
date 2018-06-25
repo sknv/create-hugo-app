@@ -25,7 +25,9 @@
 
   {{ block "content" . }}{{ end }}
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/preact/8.2.9/preact.min.js"></script>
   <script src="/{{ $webpack.js }}"></script>
+  {{ block "scripts" . }}{{ end }}
 </body>
 
 </html>
