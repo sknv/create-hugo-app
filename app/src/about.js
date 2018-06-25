@@ -1,4 +1,5 @@
-import Clock from './Clock.jsx'
+import Clock from './Clock'
+
 const { h, render } = window.preact
 
 render(<Clock />, document.body)

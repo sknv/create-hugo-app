@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": 1,
+    "react/jsx-one-expression-per-line": 1,
+    "semi": 0
+  },
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
+  }
+}
