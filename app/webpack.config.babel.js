@@ -4,18 +4,17 @@ import AssetsPlugin from 'assets-webpack-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 
-// Add hash to asset name for production.
-function getAssetName(assetType) {
-  return `${assetType}/[name].[hash]`
+function getAssetName(assetType, useHash) {
+  return `${assetType}/[name]` + (useHash ? '.[hash]' : '')
 }
 
 export default function config(env, argv) {
   const isDevelopment = argv.mode === 'development',
     isProduction = argv.mode === 'production'
 
-  const outputPath = path.join(__dirname, '../static')
+  const outputDir = path.join(__dirname, '../static'),
+    manifestDir = path.join(__dirname, '../data')
 
   const result = {
     entry: {
@@ -24,8 +23,8 @@ export default function config(env, argv) {
     },
 
     output: {
-      path: outputPath,
-      filename: `${getAssetName('js')}.js`
+      path: outputDir,
+      filename: `${getAssetName('js', isProduction)}.js`
     },
 
     module: {
@@ -45,15 +44,9 @@ export default function config(env, argv) {
     },
 
     plugins: [
-      new CleanWebpackPlugin(['css', 'js'], { root: outputPath }),
-
+      new CleanWebpackPlugin(['webpack_assets.json'], { root: manifestDir }),
       new MiniCssExtractPlugin({
-        filename: `${getAssetName('css')}.css`
-      }),
-
-      new AssetsPlugin({
-        path: path.join(__dirname, '../data'),
-        filename: 'webpack_assets.json'
+        filename: `${getAssetName('css', isProduction)}.css`
       })
     ],
 
@@ -65,6 +58,13 @@ export default function config(env, argv) {
     return result
   }
 
-  result.plugins.push(new OptimizeCSSAssetsPlugin())
+  result.plugins = result.plugins.concat([
+    new CleanWebpackPlugin(['css', 'js'], { root: outputDir }),
+    new OptimizeCSSAssetsPlugin(),
+    new AssetsPlugin({
+      path: manifestDir,
+      filename: 'webpack_assets.json'
+    })
+  ])
   return result
 }
