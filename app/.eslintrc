@@ -1,11 +1,18 @@
 {
   "extends": "airbnb",
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true,
+    "node": true
   },
+  "parser": "babel-eslint",
   "rules": {
-    "react/jsx-filename-extension": 1,
-    "react/jsx-one-expression-per-line": 1,
+    "arrow-parens": 0,
+    "implicit-arrow-linebreak": 0,
+    "no-console": 0,
+    "object-curly-newline": [1, { "consistent": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-one-expression-per-line": 0,
     "semi": 0
   },
   "settings": {
