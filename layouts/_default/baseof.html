@@ -13,7 +13,11 @@
   <link rel="apple-touch-icon" href="/icon.png">
 
   {{ $webpack := .Site.Data.webpack_assets.main }}
-  <link rel="stylesheet" href="/{{ $webpack.css }}">
+  {{ if $webpack }}
+    <link rel="stylesheet" href="/{{ $webpack.css }}">
+  {{ else }}
+    <link rel="stylesheet" href="/css/main.css">
+  {{ end }}
 </head>
 
 <body>
@@ -25,7 +29,13 @@
 
   {{ block "content" . }}{{ end }}
 
-  <script src="/{{ $webpack.js }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/preact/8.2.9/preact.min.js"></script>
+  {{ if $webpack }}
+    <script src="/{{ $webpack.js }}"></script>
+  {{ else }}
+    <script src="/js/main.js"></script>
+  {{ end }}
+  {{ block "scripts" . }}{{ end }}
 </body>
 
 </html>

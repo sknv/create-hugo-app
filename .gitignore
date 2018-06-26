@@ -14,5 +14,8 @@
 # Binaries
 bin/
 
-# Compiled site
+# Compiled files
+data/webpack_assets.json
 public/
+static/css
+static/js
