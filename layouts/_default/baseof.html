@@ -12,11 +12,11 @@
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/icon.png">
 
-  {{ $webpack := .Site.Data.webpack_assets.main }}
+  {{ $webpack := .Site.Data.webpack_assets.index }}
   {{ if $webpack }}
     <link rel="stylesheet" href="/{{ $webpack.css }}">
   {{ else }}
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index.css">
   {{ end }}
 </head>
 
@@ -33,7 +33,7 @@
   {{ if $webpack }}
     <script src="/{{ $webpack.js }}"></script>
   {{ else }}
-    <script src="/js/main.js"></script>
+    <script src="/js/index.js"></script>
   {{ end }}
   {{ block "scripts" . }}{{ end }}
 </body>

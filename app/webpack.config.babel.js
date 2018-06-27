@@ -2,6 +2,7 @@ import path from 'path'
 
 import AssetsPlugin from 'assets-webpack-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
+import globEntries from 'webpack-glob-entries'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
@@ -17,11 +18,7 @@ export default function config(env, argv) {
   const manifestDir = path.join(__dirname, '../data')
 
   const result = {
-    entry: {
-      main: path.join(__dirname, 'src', 'index.js'),
-      about: path.join(__dirname, 'src', 'about.js'),
-    },
-
+    entry: globEntries(path.join(__dirname, 'src', '*.js')),
     output: {
       path: outputDir,
       filename: `${getAssetName('js', isProduction)}.js`,
