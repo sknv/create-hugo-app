@@ -1,0 +1,11 @@
+{
+  "collapseBooleanAttributes": true,
+  "collapseWhitespace": true,
+  "minifyCSS": true,
+  "minifyJS": true,
+  "minifyURLs": true,
+  "processConditionalComments": true,
+  "removeComments": true,
+  "removeEmptyAttributes": true,
+  "removeRedundantAttributes": true
+}
